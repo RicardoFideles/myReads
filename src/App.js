@@ -1,6 +1,6 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
-import Bookself from './Bookself'
+import Bookshelf from './Bookshelf'
 import './App.css'
 
 
@@ -63,9 +63,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                  <Bookself books={readingBooks} title="Currently Reading" onUpdateBook={this.upateBookShelf}/>
-                  <Bookself books={wantToReadBooks} title="Want to Read" onUpdateBook={this.upateBookShelf}/>
-                  <Bookself books={readBooks} title="Read" onUpdateBook={this.upateBookShelf}/>
+                  <Bookshelf books={readingBooks} title="Currently Reading" onUpdateBook={this.upateBookShelf}/>
+                  <Bookshelf books={wantToReadBooks} title="Want to Read" onUpdateBook={this.upateBookShelf}/>
+                  <Bookshelf books={readBooks} title="Read" onUpdateBook={this.upateBookShelf}/>
               </div>
             </div>
             <div className="open-search">
