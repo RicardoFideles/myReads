@@ -22,17 +22,24 @@ class BooksApp extends React.Component {
 
 
   upateBookShelf = (shelf, book) => {
+    console.log(shelf);
+    console.log(book);
     if (shelf !== 'none') {
       book.shelf = shelf
       this.setState((state) => ({
         books : state.books.filter((b) => b.id !== book.id).concat([book])
       }))
+      BooksAPI.update(book, shelf);
     }
   } 
 
   searchBooks = (query) => {
     BooksAPI.search(query, 20)
       .then((books) => {
+        if (books === undefined) {
+          this.setState({results : []})
+          return
+        }
         this.setState({results : books})
       })
   }
@@ -63,7 +70,10 @@ class BooksApp extends React.Component {
           </div>
         )}/>
         <Route path="/search" render={({history}) => (
-          <BookSearch results={this.state.results} onSearch={this.searchBooks}/>
+          <BookSearch results={this.state.results} onSearch={this.searchBooks} onUpdateBook={(shelf, book) => {
+            this.upateBookShelf(shelf, book);
+            history.push('/');
+            } }/>
         )}/>
 
       </div>
