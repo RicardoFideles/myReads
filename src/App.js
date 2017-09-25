@@ -4,6 +4,7 @@ import { Route, Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import Bookshelf from './Bookshelf'
 import BookSearch from './BookSearch'
+import BookDetail from './BookDetail'
 import './App.css'
 
 
@@ -15,6 +16,7 @@ class BooksApp extends React.Component {
       books : [],
       showSearchPage: false,
       results : [],
+      bookDetail : null,
       shelves : [
         {
           id : 'currentlyReading',
@@ -44,7 +46,16 @@ class BooksApp extends React.Component {
       books : state.books.filter((b) => b.id !== book.id).concat([book])
     }))
     BooksAPI.update(book, shelf);
-  } 
+  }
+  
+  loadBook = (id) => {
+    console.log('loadBook', id)
+    BooksAPI.get(id).then((book) => {
+      console.log('retirn')
+      console.log(book)
+      this.setState({bookDetail :  book })
+    })
+  }
 
   searchBooks = (query) => {
 
@@ -96,6 +107,10 @@ class BooksApp extends React.Component {
             history.push('/');
             } }/>
         )}/>
+        <Route path="/book/:id" render={ ({ match }) => (
+            <BookDetail book={this.state.bookDetail} onLoad={this.loadBook} bookID={match.params.id}/>
+        )}
+        />
 
       </div>
     )
