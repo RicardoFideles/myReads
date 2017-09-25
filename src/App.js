@@ -8,12 +8,30 @@ import './App.css'
 
 
 class BooksApp extends React.Component {
-  state = {
-    books : [],
-    showSearchPage: false,
-    results : []
-  }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      books : [],
+      showSearchPage: false,
+      results : [],
+      shelves : [
+        {
+          id : 'currentlyReading',
+          title : 'Currently Reading'
+        },
+        {
+          id : 'wantToRead',
+          title : 'Want to Read'
+        },
+        {
+          id : 'read',
+          title : 'Read'
+        }
+      ]
+    }
+  }
+  
   componentDidMount () {
     BooksAPI.getAll().then((books) => {
       this.setState({books})
@@ -22,15 +40,11 @@ class BooksApp extends React.Component {
 
 
   upateBookShelf = (shelf, book) => {
-    console.log(shelf);
-    console.log(book);
-    if (shelf !== 'none') {
-      book.shelf = shelf
-      this.setState((state) => ({
-        books : state.books.filter((b) => b.id !== book.id).concat([book])
-      }))
-      BooksAPI.update(book, shelf);
-    }
+    book.shelf = shelf
+    this.setState((state) => ({
+      books : state.books.filter((b) => b.id !== book.id).concat([book])
+    }))
+    BooksAPI.update(book, shelf);
   } 
 
   searchBooks = (query) => {
@@ -45,11 +59,6 @@ class BooksApp extends React.Component {
   }
 
   render() {
-
-    const readingBooks = this.state.books.filter((book) => book.shelf === 'currentlyReading')
-    const wantToReadBooks = this.state.books.filter((book) => book.shelf === 'wantToRead')
-    const readBooks = this.state.books.filter((book) => book.shelf === 'read')
-
     return (
       <div className="app">
         <Route exact path="/" render={() => (
@@ -59,9 +68,11 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                  <Bookshelf books={readingBooks} title="Currently Reading" onUpdateBook={this.upateBookShelf}/>
-                  <Bookshelf books={wantToReadBooks} title="Want to Read" onUpdateBook={this.upateBookShelf}/>
-                  <Bookshelf books={readBooks} title="Read" onUpdateBook={this.upateBookShelf}/>
+                {
+                  this.state.shelves.map(shelf => (
+                    <Bookshelf shelves={this.state.shelves} key={shelf.id} books={this.state.books.filter((book) => book.shelf === shelf.id)} title={shelf.title} onUpdateBook={this.upateBookShelf}/>
+                  ))
+                }
               </div>
             </div>
             <div className="open-search">
@@ -70,7 +81,7 @@ class BooksApp extends React.Component {
           </div>
         )}/>
         <Route path="/search" render={({history}) => (
-          <BookSearch results={this.state.results} onSearch={this.searchBooks} onUpdateBook={(shelf, book) => {
+          <BookSearch shelves={this.state.shelves} results={this.state.results} onSearch={this.searchBooks} onUpdateBook={(shelf, book) => {
             this.upateBookShelf(shelf, book);
             history.push('/');
             } }/>

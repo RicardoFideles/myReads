@@ -1,18 +1,25 @@
 import React, { Component } from 'react'
+import If from './If'
 
 class Book extends Component {
     render() {
-        const {book, onUpdateBook}  = this.props
+        const {book, onUpdateBook, shelves}  = this.props
+        console.log(book.shelf)
         return (
                 <div className="book">
                     <div className="book-top">
                         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
                         <div className="book-shelf-changer">
-                            <select onChange={(event) => onUpdateBook(event.target.value, book)} value="none"> 
-                                <option value="none" disabled>Move to...</option>
-                                <option value="currentlyReading">Currently Reading</option>
-                                <option value="wantToRead">Want to Read</option>
-                                <option value="read">Read</option>
+                            <select onChange={(event) => onUpdateBook(event.target.value, book)} value={book.shelf !== undefined ? book.shelf : '' }> 
+                                <option value="" disabled>Move to...</option>
+                                {
+                                    shelves.map(shelf => (
+                                        <option key={shelf.id} value={shelf.id}>{shelf.title}</option>
+                                    ))
+                                }
+                                <If test={book.shelf !== undefined}>
+                                    <option value="none">None</option>
+                                </If>
                             </select>
                         </div>
                     </div>
