@@ -38,7 +38,6 @@ class BooksApp extends React.Component {
     })
   }
 
-
   upateBookShelf = (shelf, book) => {
     book.shelf = shelf
     this.setState((state) => ({
@@ -48,9 +47,20 @@ class BooksApp extends React.Component {
   } 
 
   searchBooks = (query) => {
+
+    if (query === '') {
+      this.setState({results : []})
+      return
+    }
+    
+    console.log('queryyy', query);
     BooksAPI.search(query, 20)
       .then((books) => {
         if (books === undefined) {
+          this.setState({results : []})
+          return
+        }
+        if (books.error) {
           this.setState({results : []})
           return
         }

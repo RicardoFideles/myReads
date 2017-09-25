@@ -4,7 +4,7 @@ import If from './If'
 class Book extends Component {
     render() {
         const {book, onUpdateBook, shelves}  = this.props
-        console.log(book.shelf)
+        const authors = book.authors !== undefined ? book.authors : []
         return (
                 <div className="book">
                     <div className="book-top">
@@ -24,12 +24,12 @@ class Book extends Component {
                         </div>
                     </div>
                     <div className="book-title">{book.title}</div>
-                    {book.authors.map(author => (
+                    {authors.map(author => (
                         <div key={author} className="book-authors">{author}</div>
                     ))}
                     
                 </div>
-                )
+            )
     }
 }
 

@@ -4,20 +4,24 @@ import Book from './Book'
 
 class BookSearch extends Component {
 
-    state = {
-        query : '',
+    constructor(props) {
+        super(props);
+        this.state = { query : ''}
     }
-
+   
     updateQuery = (query) => {
         this.setState({query : query.trim()})
         this.props.onSearch(query)
     }
 
+    componentWillUnmount(){
+        this.setState({query : ''})
+        this.props.onSearch('')
+    }
 
     render() {
         const {query} = this.state
         const {results, onUpdateBook, shelves} = this.props
-        console.log(results)
         return (
             <div className="search-books">
                 <div className="search-books-bar">

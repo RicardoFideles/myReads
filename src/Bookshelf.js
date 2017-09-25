@@ -3,7 +3,6 @@ import Book from './Book'
 class Bookself extends Component {
     render() {
         const {title, onUpdateBook, shelves} = this.props
-        console.log(shelves)
         return (
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{title}</h2>
