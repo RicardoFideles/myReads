@@ -15,7 +15,6 @@ class BooksApp extends React.Component {
     this.state = {
       books : [],
       showSearchPage: false,
-      results : [],
       bookDetail : null,
       shelves : [
         {
@@ -57,27 +56,7 @@ class BooksApp extends React.Component {
     })
   }
 
-  searchBooks = (query) => {
-
-    if (query === '') {
-      this.setState({results : []})
-      return
-    }
-    
-    console.log('queryyy', query);
-    BooksAPI.search(query, 20)
-      .then((books) => {
-        if (books === undefined) {
-          this.setState({results : []})
-          return
-        }
-        if (books.error) {
-          this.setState({results : []})
-          return
-        }
-        this.setState({results : books})
-      })
-  }
+  
 
   render() {
     return (
@@ -102,7 +81,7 @@ class BooksApp extends React.Component {
           </div>
         )}/>
         <Route path="/search" render={({history}) => (
-          <BookSearch shelves={this.state.shelves} results={this.state.results} onSearch={this.searchBooks} onUpdateBook={(shelf, book) => {
+          <BookSearch shelves={this.state.shelves} onUpdateBook={(shelf, book) => {
             this.upateBookShelf(shelf, book);
             history.push('/');
             } }/>

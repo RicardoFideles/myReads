@@ -1,27 +1,55 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Book from './Book'
+import * as BooksAPI from './BooksAPI'
 
 class BookSearch extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { query : ''}
+        this.state = { 
+            query : '',
+            results : []
+        }
+    }
+
+    searchBooks = (query) => {
+        
+    if (query === '') {
+        this.setState({results : []})
+        return
+    }
+    
+    console.log('queryyy', query);
+    BooksAPI.search(query, 20)
+        .then((books) => {
+        if (books === undefined) {
+            this.setState({results : []})
+            return
+        }
+        if (books.error) {
+            this.setState({results : []})
+            return
+        }
+        this.setState({results : books})
+        })
     }
    
     updateQuery = (query) => {
         this.setState({query : query.trim()})
-        this.props.onSearch(query)
+        this.onSearch(query)
     }
 
     componentWillUnmount(){
-        this.setState({query : ''})
-        this.props.onSearch('')
+        this.setState({
+            query : '',
+            results : []
+        })
     }
 
     render() {
-        const {query} = this.state
-        const {results, onUpdateBook, shelves} = this.props
+        const {query, results} = this.state
+        const {onUpdateBook, shelves} = this.props
         return (
             <div className="search-books">
                 <div className="search-books-bar">
