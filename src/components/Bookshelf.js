@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Book from './Book'
-import { Link } from 'react-router-dom' 
 
 class Bookself extends Component {
     render() {
@@ -12,9 +11,7 @@ class Bookself extends Component {
                     <ol className="books-grid">
                     {this.props.books.map(book => (
                         <li key={book.id}>
-                            <Link to={`/book/${book.id}`}>
-                                <Book shelves={shelves} book={book} onUpdateBook={onUpdateBook}/>                       
-                            </Link>
+                            <Book shelves={shelves} book={book} onUpdateBook={onUpdateBook}/>                       
                         </li>
                     ))}
                     </ol>

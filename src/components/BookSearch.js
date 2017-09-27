@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Book from './Book'
-import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from '../BooksAPI'
 
 class BookSearch extends Component {
 
@@ -15,29 +15,28 @@ class BookSearch extends Component {
 
     searchBooks = (query) => {
         
-    if (query === '') {
-        this.setState({results : []})
-        return
-    }
-    
-    console.log('queryyy', query);
-    BooksAPI.search(query, 20)
-        .then((books) => {
-        if (books === undefined) {
+        if (query === '') {
             this.setState({results : []})
             return
         }
-        if (books.error) {
-            this.setState({results : []})
-            return
-        }
-        this.setState({results : books})
+        
+        BooksAPI.search(query, 20)
+            .then((books) => {
+            if (books === undefined) {
+                this.setState({results : []})
+                return
+            }
+            if (books.error) {
+                this.setState({results : []})
+                return
+            }
+            this.setState({results : books})
         })
     }
    
     updateQuery = (query) => {
         this.setState({query : query.trim()})
-        this.onSearch(query)
+        this.searchBooks(query)
     }
 
     componentWillUnmount(){

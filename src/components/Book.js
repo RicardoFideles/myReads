@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import If from './If'
+import If from '../utils/If'
+import { Link } from 'react-router-dom' 
 
 class Book extends Component {
     render() {
@@ -8,7 +9,9 @@ class Book extends Component {
         return (
                 <div className="book">
                     <div className="book-top">
-                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
+                        <Link to={`/book/${book.id}`}>
+                            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
+                        </Link>
                         <div className="book-shelf-changer">
                             <select onChange={(event) => onUpdateBook(event.target.value, book)} value={book.shelf !== undefined ? book.shelf : '' }> 
                                 <option value="" disabled>Move to...</option>
@@ -27,7 +30,6 @@ class Book extends Component {
                     {authors.map(author => (
                         <div key={author} className="book-authors">{author}</div>
                     ))}
-                    
                 </div>
             )
     }

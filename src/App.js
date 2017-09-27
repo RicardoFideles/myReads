@@ -2,9 +2,10 @@ import React from 'react'
 import { Route, Link } from 'react-router-dom' 
 
 import * as BooksAPI from './BooksAPI'
-import Bookshelf from './Bookshelf'
-import BookSearch from './BookSearch'
-import BookDetail from './BookDetail'
+import Bookshelf from './components/Bookshelf'
+import BookSearch from './components/BookSearch'
+import BookDetail from './components/BookDetail'
+import Title from './utils/header'
 import './App.css'
 
 
@@ -15,7 +16,6 @@ class BooksApp extends React.Component {
     this.state = {
       books : [],
       showSearchPage: false,
-      bookDetail : null,
       shelves : [
         {
           id : 'currentlyReading',
@@ -46,26 +46,13 @@ class BooksApp extends React.Component {
     }))
     BooksAPI.update(book, shelf);
   }
-  
-  loadBook = (id) => {
-    console.log('loadBook', id)
-    BooksAPI.get(id).then((book) => {
-      console.log('retirn')
-      console.log(book)
-      this.setState({bookDetail :  book })
-    })
-  }
-
-  
 
   render() {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
           <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
+            <Title title="MyReads" />
             <div className="list-books-content">
               <div>
                 {
@@ -86,8 +73,12 @@ class BooksApp extends React.Component {
             history.push('/');
             } }/>
         )}/>
-        <Route path="/book/:id" render={ ({ match }) => (
-            <BookDetail book={this.state.bookDetail} onLoad={this.loadBook} bookID={match.params.id}/>
+        <Route path="/book/:id" render={ ({ match, history }) => (
+            <BookDetail bookID={match.params.id} shelves={this.state.shelves} onUpdateBook={(shelf, book) => {
+              this.upateBookShelf(shelf, book);
+                history.push('/');
+              }}
+            />
         )}
         />
 
