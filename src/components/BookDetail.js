@@ -39,14 +39,14 @@ class BookDetail extends Component {
                         <Title title={book.title} detail="true"/>
 
                         <div className="container">
-                            <div className="col-xs-3">
+                            <div className="col-md-3 col-xs-12">
                                 <div className="book-top">
                                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
                                     <BookSelfChanger onUpdateBook={onUpdateBook} book={book} shelves={shelves}/>
                                 </div>
                             </div>
 
-                            <div className="col-xs-9">
+                            <div className="col-md-9 col-xs-12">
                                 <div className="book-title">
                                     <h3>{book.title}</h3>
                                     <div>
