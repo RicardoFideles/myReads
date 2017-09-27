@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import * as BooksAPI from '../BooksAPI'
 import Title from '../utils/header'
-import If from '../utils/If'
 import BookSelfChanger from './BookSelfChanger'
 
 
@@ -18,7 +17,6 @@ class BookDetail extends Component {
 
     loadBook = (id) => {
         BooksAPI.get(id).then((book) => {
-            console.log(book)
             this.setState ({
                 book :  book,
                 loading : false

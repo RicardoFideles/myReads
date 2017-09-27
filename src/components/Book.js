@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import If from '../utils/If'
 import { Link } from 'react-router-dom' 
+import BookSelfChanger from './BookSelfChanger'
+
 
 class Book extends Component {
     render() {

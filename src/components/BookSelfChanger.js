@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import If from './If'
+import If from '../utils/If'
 
 export default props => (
     <div className="book-shelf-changer">
