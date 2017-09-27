@@ -1,8 +1,9 @@
 # MyReads Project
 
-Myreads é um projeto de uma estante de livros utilizando ReactJS.
+Myreads é um projeto de uma estante de livros utilizando ReactJS, 
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
+## Demo do projeto no HEROKU
+https://stark-gorge-34780.herokuapp.com/
 
 ## Instalação:
 ````
