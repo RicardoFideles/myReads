@@ -8,7 +8,6 @@ import BookDetail from './components/BookDetail'
 import Title from './utils/header'
 import './App.css'
 
-
 class BooksApp extends React.Component {
 
   constructor(props) {
@@ -40,11 +39,12 @@ class BooksApp extends React.Component {
   }
 
   upateBookShelf = (shelf, book) => {
-    book.shelf = shelf
-    this.setState((state) => ({
-      books : state.books.filter((b) => b.id !== book.id).concat([book])
-    }))
-    BooksAPI.update(book, shelf);
+    BooksAPI.update(book, shelf).then(() => {
+      book.shelf = shelf
+      this.setState((state) => ({
+        books : state.books.filter((b) => b.id !== book.id).concat([book])
+      }))
+    });
   }
 
   render() {
@@ -68,7 +68,7 @@ class BooksApp extends React.Component {
           </div>
         )}/>
         <Route path="/search" render={({history}) => (
-          <BookSearch shelves={this.state.shelves} onUpdateBook={(shelf, book) => {
+          <BookSearch shelves={this.state.shelves} currentBooks={this.state.books} onUpdateBook={(shelf, book) => {
             this.upateBookShelf(shelf, book);
             history.push('/');
             } }/>
