@@ -16,6 +16,9 @@ class BookSearch extends Component {
 
     searchBooks = (query) => {
 
+        console.log('component');
+        console.log('qieruy====',query)
+
         if (query === '') {
             this.setState({results : []})
             return
@@ -23,6 +26,10 @@ class BookSearch extends Component {
 
         BooksAPI.search(query, 20)
             .then((books) => {
+
+            console.log('retorno')
+            console.log(books)
+
             if (books === undefined) {
                 this.setState({results : []})
                 return
@@ -31,6 +38,7 @@ class BookSearch extends Component {
                 this.setState({results : []})
                 return
             }
+
             this.setState({results : books})
         })
     }

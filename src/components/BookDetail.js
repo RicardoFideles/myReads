@@ -29,7 +29,6 @@ class BookDetail extends Component {
         if(loading){
             return null
         }
-
         const authors = Array.isArray(book.authors) ? book.authors.join(', ') : ''
         const { onUpdateBook, shelves }  = this.props
         return (
