@@ -5,7 +5,7 @@ import * as BooksAPI from './BooksAPI'
 import Bookshelf from './components/Bookshelf'
 import BookSearch from './components/BookSearch'
 import BookDetail from './components/BookDetail'
-import Title from './utils/header'
+import Header from './utils/header'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -48,7 +48,7 @@ class BooksApp extends React.Component {
       <div className="app">
         <Route exact path="/" render={() => (
           <div className="list-books">
-            <Title title="MyReads" />
+            <Header title="MyReads" />
             <div className="list-books-content">
               <div>
                 {

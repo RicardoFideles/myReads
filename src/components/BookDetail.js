@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import * as BooksAPI from '../BooksAPI'
-import Title from '../utils/header'
+import Header from '../utils/header'
 import BookSelfChanger from './BookSelfChanger'
 
 
@@ -35,7 +35,7 @@ class BookDetail extends Component {
             <div>
                 <div className="list-books">
 
-                    <Title title={book.title} detail="true"/>
+                    <Header title={book.title} detail="true"/>
 
                     <div className="container">
                         <div className="col-md-3 col-xs-12">

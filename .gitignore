@@ -5,4 +5,7 @@ coverage
 .history
 src/__snapshots__
 src/components/__snapshots__
+src/utils/__snapshots__
+
+
 
