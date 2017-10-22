@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom' 
+import { Route, Link } from 'react-router-dom'
 
 import * as BooksAPI from './BooksAPI'
 import Bookshelf from './components/Bookshelf'
@@ -14,24 +14,10 @@ class BooksApp extends React.Component {
     super(props);
     this.state = {
       books : [],
-      showSearchPage: false,
-      shelves : [
-        {
-          id : 'currentlyReading',
-          title : 'Currently Reading'
-        },
-        {
-          id : 'wantToRead',
-          title : 'Want to Read'
-        },
-        {
-          id : 'read',
-          title : 'Read'
-        }
-      ]
+      showSearchPage: false
     }
   }
-  
+
   componentDidMount () {
     BooksAPI.getAll().then((books) => {
       this.setState({books})
@@ -48,6 +34,16 @@ class BooksApp extends React.Component {
   }
 
   render() {
+    const shelves = [{
+      id : 'currentlyReading',
+      title : 'Currently Reading'
+    },{
+      id : 'wantToRead',
+      title : 'Want to Read'
+    },{
+      id : 'read',
+      title : 'Read'
+    }]
     return (
       <div className="app">
         <Route exact path="/" render={() => (
@@ -56,8 +52,8 @@ class BooksApp extends React.Component {
             <div className="list-books-content">
               <div>
                 {
-                  this.state.shelves.map(shelf => (
-                    <Bookshelf shelves={this.state.shelves} key={shelf.id} books={this.state.books.filter((book) => book.shelf === shelf.id)} title={shelf.title} onUpdateBook={this.upateBookShelf}/>
+                  shelves.map(shelf => (
+                    <Bookshelf shelves={shelves} key={shelf.id} books={this.state.books.filter((book) => book.shelf === shelf.id)} title={shelf.title} onUpdateBook={this.upateBookShelf}/>
                   ))
                 }
               </div>
@@ -68,13 +64,13 @@ class BooksApp extends React.Component {
           </div>
         )}/>
         <Route path="/search" render={({history}) => (
-          <BookSearch shelves={this.state.shelves} currentBooks={this.state.books} onUpdateBook={(shelf, book) => {
+          <BookSearch shelves={shelves} currentBooks={this.state.books} onUpdateBook={(shelf, book) => {
             this.upateBookShelf(shelf, book);
             history.push('/');
             } }/>
         )}/>
         <Route path="/book/:id" render={ ({ match, history }) => (
-            <BookDetail bookID={match.params.id} shelves={this.state.shelves} onUpdateBook={(shelf, book) => {
+            <BookDetail bookID={match.params.id} shelves={shelves} onUpdateBook={(shelf, book) => {
               this.upateBookShelf(shelf, book);
                 history.push('/');
               }}

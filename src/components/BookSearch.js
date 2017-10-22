@@ -36,7 +36,7 @@ class BookSearch extends Component {
     }
 
     updateQuery = (query) => {
-        this.setState({query : query.trim()})
+        this.setState({query})
         this.searchBooks(query)
     }
 
@@ -49,7 +49,7 @@ class BookSearch extends Component {
         const {onUpdateBook, shelves, currentBooks} = this.props
 
         results.map((b) => {
-            let bookInBooks = currentBooks.filter((x) => x.id === b.id)[0]
+            let bookInBooks = currentBooks.find(x => x.id === b.id)
             if (bookInBooks !== undefined) {
                 if (b.id === bookInBooks.id) {
                     b.shelf = bookInBooks.shelf

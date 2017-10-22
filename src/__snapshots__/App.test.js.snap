@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div
+  className="app"
+>
+  <Route
+    exact={true}
+    path="/"
+    render={[Function]}
+  />
+  <Route
+    path="/search"
+    render={[Function]}
+  />
+  <Route
+    path="/book/:id"
+    render={[Function]}
+  />
+</div>
+`;

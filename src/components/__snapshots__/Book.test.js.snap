@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders book with authors 1`] = `
+<div
+  className="book"
+>
+  <div
+    className="book-top"
+  >
+    <Link
+      replace={false}
+      to="/book/1"
+    >
+      <div
+        className="book-cover"
+        style={
+          Object {
+            "backgroundImage": "url(\\"test\\")",
+            "height": 193,
+            "width": 128,
+          }
+        }
+      />
+    </Link>
+    <BookSelfChanger
+      book={
+        Object {
+          "authors": Array [
+            "Ricardo",
+            "Nathaly",
+          ],
+          "id": 1,
+          "imageLinks": Object {
+            "thumbnail": "test",
+          },
+          "title": "Jest In Action",
+        }
+      }
+      currentBooks={Array []}
+      onUpdateBook={[Function]}
+      shelves={Array []}
+    />
+  </div>
+  <div
+    className="book-title"
+  >
+    Jest In Action
+  </div>
+  <div
+    className="book-authors"
+    key="Ricardo"
+  >
+    Ricardo
+  </div>
+  <div
+    className="book-authors"
+    key="Nathaly"
+  >
+    Nathaly
+  </div>
+</div>
+`;
+
+exports[`renders without crashing 1`] = `
+<div
+  className="book"
+>
+  <div
+    className="book-top"
+  >
+    <Link
+      replace={false}
+      to="/book/1"
+    >
+      <div
+        className="book-cover"
+        style={
+          Object {
+            "backgroundImage": "url(\\"test\\")",
+            "height": 193,
+            "width": 128,
+          }
+        }
+      />
+    </Link>
+    <BookSelfChanger
+      book={
+        Object {
+          "authors": Array [],
+          "id": 1,
+          "imageLinks": Object {
+            "thumbnail": "test",
+          },
+          "title": "Jest In Action",
+        }
+      }
+      currentBooks={Array []}
+      onUpdateBook={[Function]}
+      shelves={Array []}
+    />
+  </div>
+  <div
+    className="book-title"
+  >
+    Jest In Action
+  </div>
+</div>
+`;
