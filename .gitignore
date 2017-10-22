@@ -3,3 +3,6 @@ yarn.lock
 .DS_Store
 coverage
 .history
+src/__snapshots__
+src/components/__snapshots__
+

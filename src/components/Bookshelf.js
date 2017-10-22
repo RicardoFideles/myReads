@@ -1,14 +1,14 @@
 import React from 'react'
 import Book from './Book'
 
-const Bookself = props => {
-    const {title, onUpdateBook, shelves} = props
+const Bookshelf = props => {
+    const {title, onUpdateBook, shelves, books} = props
     return (
         <div className="bookshelf">
             <h2 className="bookshelf-title">{title}</h2>
             <div className="bookshelf-books">
                 <ol className="books-grid">
-                {props.books.map(book => (
+                {books.map(book => (
                     <li key={book.id}>
                         <Book shelves={shelves} book={book} onUpdateBook={onUpdateBook}/>
                     </li>
@@ -19,4 +19,4 @@ const Bookself = props => {
     )
 }
 
-export default Bookself;
+export default Bookshelf;
