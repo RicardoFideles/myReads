@@ -1,5 +1,5 @@
 import React from "react"
-import Header from "./Header"
+import Header from "./header"
 import {shallow} from "enzyme"
 import Adapter from 'enzyme-adapter-react-15'
 import * as Enzyme from "enzyme"
