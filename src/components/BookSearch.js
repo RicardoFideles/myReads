@@ -27,8 +27,8 @@ class BookSearch extends Component {
         BooksAPI.search(query, 20)
             .then((books) => {
 
-            //console.log('retorno')
-            //console.log(books)
+            // console.log('retorno')
+            // console.log(books)
 
             if (books === undefined) {
                 this.setState({results : []})
