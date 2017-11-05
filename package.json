@@ -16,14 +16,19 @@
     "fetch-mock": "^5.13.0",
     "react-addons-test-utils": "^15.6.2",
     "react-scripts": "^1.0.14",
-    "react-test-renderer": "^15.6.2"
+    "react-test-renderer": "^15.6.2",
+    "selenium-webdriver": "^3.6.0",
+    "webdriver-manager": "^12.0.6"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --setupFiles='./src/setupTest.js' ",
     "test:coverage": "react-scripts test --env=jsdom --coverage --setupFiles='./src/setupTest.js' ",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "e2e": "jest -c e2e/jestConfig.json",
+    "e2e-update": "webdriver-manager update --out_dir ../../e2e/selenium",
+    "e2e-start": "webdriver-manager start --out_dir ../../e2e/selenium"
   },
   "jest": {
     "collectCoverageFrom": [
