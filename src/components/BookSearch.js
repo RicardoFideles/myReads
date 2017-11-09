@@ -24,21 +24,17 @@ class BookSearch extends Component {
 
         BooksAPI.search(query, 20)
             .then((books) => {
-
-            // console.log('retorno')
-            // console.log(books)
-
-            if (books === undefined) {
-                this.setState({results : []})
-                return
+                if (books === undefined) {
+                    this.setState({results : []})
+                    return
+                }
+                if (books.error) {
+                    this.setState({results : []})
+                    return
+                }
+                this.setState({results : books})
             }
-            if (books.error) {
-                this.setState({results : []})
-                return
-            }
-
-            this.setState({results : books})
-        })
+        )
     }
 
     updateQuery = (query) => {
