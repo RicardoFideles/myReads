@@ -17,9 +17,6 @@ class BookSearch extends Component {
 
     searchBooks = (query) => {
 
-        //console.log('component');
-        //console.log('qieruy====',query)
-
         if (query === '') {
             this.setState({results : []})
             return
@@ -49,12 +46,8 @@ class BookSearch extends Component {
         this.searchBooks(query)
     }
 
-    // componentDidMount() {
-    //     this.searchBooks = debounce(300, false, this.searchBooks)
-    // }
-
     render() {
-        const {query, results} = this.state
+        const {results} = this.state
         const {onUpdateBook, shelves, currentBooks} = this.props
 
         results.map((b) => {
