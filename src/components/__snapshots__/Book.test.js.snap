@@ -11,15 +11,9 @@ exports[`renders without crashing 1`] = `
       replace={false}
       to="/book/1"
     >
-      <div
+      <img
         className="book-cover"
-        style={
-          Object {
-            "backgroundImage": "url(\\"test\\")",
-            "height": 193,
-            "width": 128,
-          }
-        }
+        src="test"
       />
     </Link>
     <BookSelfChanger

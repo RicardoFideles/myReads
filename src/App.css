@@ -121,6 +121,7 @@ body, .app {
 
 .book {
   width: 140px;
+  overflow: hidden;
 }
 .book-title,
 .book-authors {

@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Book from './Book'
 import * as BooksAPI from '../BooksAPI'
-import debounce from 'throttle-debounce/debounce'
+import { Debounce } from 'react-throttle';
+
 
 class BookSearch extends Component {
 
@@ -48,9 +49,9 @@ class BookSearch extends Component {
         this.searchBooks(query)
     }
 
-    componentDidMount() {
-        this.searchBooks = debounce(300, false, this.searchBooks)
-    }
+    // componentDidMount() {
+    //     this.searchBooks = debounce(300, false, this.searchBooks)
+    // }
 
     render() {
         const {query, results} = this.state
@@ -71,12 +72,13 @@ class BookSearch extends Component {
                 <div className="search-books-bar">
                     <Link className="close-search" to='/'>Close</Link>
                     <div className="search-books-input-wrapper">
-                        <input
-                            type="text"
-                            placeholder="Search by title or author"
-                            value={query}
-                            onChange={(event) => this.updateQuery(event.target.value)}
-                            />
+                        <Debounce time="400" handler="onChange">
+                            <input
+                                type="text"
+                                placeholder="Search by title or author"
+                                onChange={(event) => this.updateQuery(event.target.value)}
+                                />
+                        </Debounce>
                     </div>
                 </div>
                 <div className="search-books-results">

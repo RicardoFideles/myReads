@@ -27,7 +27,7 @@ npm start
 ## Testes funcionais:
 Para rodar os testes funcionais será necessário abrir 3 abas do terminal.
 Na primeira aba inicie o projeto  ```npm start```
-Na segunda aba inicie o selenium ```npm run e2e-start```
+Na segunda aba inicie o selenium ```npm run e2e-update npm run e2e-start```
 Na terceria aba inicie os testes ```npm run e2e```
 
 ## Sobre o projeto

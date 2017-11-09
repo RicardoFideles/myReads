@@ -40,7 +40,7 @@ class BookDetail extends Component {
                     <div className="container">
                         <div className="col-md-3 col-xs-12">
                             <div className="book-top">
-                                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
+                                <img className="book-cover" src={book.imageLinks.thumbnail} />
                                 <BookSelfChanger onUpdateBook={onUpdateBook} book={book} shelves={shelves}/>
                             </div>
                         </div>

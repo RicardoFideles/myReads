@@ -9,7 +9,7 @@ const Book = props => {
         <div className="book">
             <div className="book-top">
                 <Link to={`/book/${book.id}`}>
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
+                    <img className="book-cover" src={book.imageLinks.thumbnail}/>
                 </Link>
                 <BookSelfChanger currentBooks={currentBooks} onUpdateBook={onUpdateBook} book={book} shelves={shelves}/>
             </div>
